@@ -1,17 +1,20 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 
 import playerShape from '../../helpers/propz/playerShape';
 
-import './Player.scss';
-
-class Player extends React.Component {
+class Players extends React.Component {
   static propTypes = {
     player: playerShape.playerShape,
     deleteSinglePlayer: PropTypes.func,
     setEditMode: PropTypes.func,
     setPlayerToEdit: PropTypes.func,
+  }
+
+  deleteSinglePlayerEvent = (e) => {
+    e.preventDefault();
+    const { deleteSinglePlayer, player } = this.props;
+    deleteSinglePlayer(player.id);
   }
 
   setEditMode = (e) => {
@@ -21,31 +24,22 @@ class Player extends React.Component {
     setPlayerToEdit(player);
   }
 
-  deleteSinglePlayerEvent = (e) => {
-    e.preventDefault();
-    const { deleteSinglePlayer, player } = this.props;
-    deleteSinglePlayer(player.id);
-  }
-
   render() {
     const { player } = this.props;
-
     return (
-      <div className="Player col-4">
+      <div className="Player col-md-3">
         <div className="card">
-        <img src={player.imageUrl} className="card-img-top" alt="{player.name}"/>
+          <img src={player.imageUrl} className="card-img-top" alt="" />
           <div className="card-body">
             <h5 className="card-title">{player.name}</h5>
             <p className="card-text">{player.position}</p>
-            <div className="d-flex justify-content-between">
             <button className="btn btn-danger" onClick={this.deleteSinglePlayerEvent}>X</button>
-            <button className="btn btn-info" onClick={this.setEditMode}>Edit</button>
-            </div>
+            <button className="btn btn-secondary" onClick={this.setEditMode}>Edit Player</button>
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }
 
-export default Player;
+export default Players;
