@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-class MyNavbar extends React.Component {
+class MyNavBar extends React.Component {
   static propTypes = {
     authed: PropTypes.bool,
   }
@@ -12,15 +11,16 @@ class MyNavbar extends React.Component {
   logMeOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut();
-  }
+  };
 
   render() {
     const { authed } = this.props;
+
     return (
       <div className="MyNavbar">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <span className="navbar-brand" href="#">Sports Roster</span>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler02" aria-controls="navbarToggler02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -41,4 +41,4 @@ class MyNavbar extends React.Component {
   }
 }
 
-export default MyNavbar;
+export default MyNavBar;
