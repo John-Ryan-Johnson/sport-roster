@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import authData from '../../helpers/data/authData';
-import playerShape from '../../helpers/props/playerShape';
+import playerShape from '../../helpers/propz/playerShape';
 
 class PlayerForm extends React.Component {
   static propTypes = {
