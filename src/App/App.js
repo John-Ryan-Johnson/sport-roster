@@ -1,13 +1,12 @@
 import React from 'react';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase from 'firebase/app';
 
 import firebaseConnection from '../helpers/data/connection';
+import MyNavbar from '../components/MyNavbar/MyNavbar';
 import Auth from '../components/Auth/Auth';
-import MyNavBar from '../components/MyNavBar/MyNavBar';
-
 import Team from '../components/Team/Team';
-
-import './App.scss';
 
 firebaseConnection();
 
@@ -16,7 +15,7 @@ class App extends React.Component {
     authed: false,
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ authed: true });
@@ -26,28 +25,20 @@ class App extends React.Component {
     });
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     this.removeListener();
-  }
-
-  renderView = () => {
-    const { authed } = this.state;
-    if (!authed) {
-      return (<Auth />);
-    }
-    return (<Team />);
   }
 
   render() {
     const { authed } = this.state;
-
     return (
-        <div className="App">
-          <MyNavBar authed={authed} />
-          {
-            this.renderView()
-          }
-        </div>
+    <div className="App">
+      <MyNavbar authed={authed} />
+      {
+        (authed) ? (<Team/>)
+          : (<Auth/>)
+      }
+    </div>
     );
   }
 }

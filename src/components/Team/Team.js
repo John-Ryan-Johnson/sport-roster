@@ -1,41 +1,52 @@
 import React from 'react';
 
-
-import Player from '../Player/Player';
-import PlayerForm from '../PlayerForm/PlayerForm';
-
 import authData from '../../helpers/data/authData';
-import playerData from '../../helpers/data/playerData';
-
-import './Team.scss';
+import playersData from '../../helpers/data/playersData';
+import Players from '../Players/Players';
+import PlayerForm from '../PlayerForm/PlayerForm';
 
 class Team extends React.Component {
   state = {
     players: [],
-    editMode: false,
     playerToEdit: {},
+    editMode: false,
     showPlayerForm: false,
   }
 
-  componentDidMount() {
-    this.getPlayers();
-  }
-
-  getPlayers = () => {
-    playerData.getPlayersByUid(authData.getUid())
+  getPlayersData = (uid) => {
+    playersData.getPlayersByUid(uid)
       .then((players) => {
         this.setState({ players });
       })
-      .catch((errFromPlayersContainer) => console.error({ errFromPlayersContainer }));
+      .catch((error) => console.error(error));
   }
 
-  updatePlayer = (playerId, playerToUpdate) => {
-    playerData.updatePlayer(playerId, playerToUpdate)
+  addPlayer = (newPlayer) => {
+    const uid = authData.getUid();
+    playersData.addPlayers(newPlayer)
       .then(() => {
-        this.getPlayers();
+        this.getPlayersData(uid);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  deleteSinglePlayer = (playerId) => {
+    const uid = authData.getUid();
+    playersData.deletePlayers(playerId)
+      .then(() => {
+        this.getPlayersData(uid);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  updatePlayer = (playerId, updatedPlayer) => {
+    const uid = authData.getUid();
+    playersData.updatePlayers(playerId, updatedPlayer)
+      .then(() => {
+        this.getPlayersData(uid);
         this.setState({ editMode: false, showPlayerForm: false });
       })
-      .catch((errorFromUpdatePlayer) => console.error({ errorFromUpdatePlayer }));
+      .catch((error) => console.error(error));
   }
 
   setEditMode = (editMode) => {
@@ -46,33 +57,28 @@ class Team extends React.Component {
     this.setState({ playerToEdit: player });
   }
 
-  deleteSinglePlayer = (playerId) => {
-    playerData.deletePlayerById(playerId)
-      .then(() => {
-        this.getPlayers();
-      })
-      .catch((errorFromDeletePlayer) => console.error({ errorFromDeletePlayer }));
-  }
-
-  addPlayer = (newPlayer) => {
-    playerData.createNewPlayer(newPlayer)
-      .then(() => {
-        this.getPlayers();
-        this.setState({ showPlayerForm: false });
-      })
-      .catch((errorFromSavePlayer) => console.error({ errorFromSavePlayer }));
-  }
-
   setShowPlayerForm = () => {
     this.setState({ showPlayerForm: true });
   }
 
+  componentDidMount() {
+    const uid = authData.getUid();
+    this.getPlayersData(uid);
+  }
+
   render() {
+    const { players } = this.state;
     return (
-      <div className="d-flex flex-wrap justify-content-center">
-        <button onClick={this.setShowPlayerForm}>Add a new player</button>
-      {this.state.showPlayerForm && <PlayerForm addPlayer={this.addPlayer} editMode={this.state.editMode} playerToEdit={this.state.playerToEdit} updatePlayer={this.updatePlayer} /> }
-  {this.state.players.map((player) => (<Player key={player.id} player={player} deleteSinglePlayer={this.deleteSinglePlayer} setEditMode={this.setEditMode} setPlayerToEdit={this.setPlayerToEdit} />))}
+      <div>
+        <button className="add mt-3 mb-5" onClick={this.setShowPlayerForm}>Add New Player</button>
+        {
+          this.state.showPlayerForm && <PlayerForm addPlayer={this.addPlayer} editMode={this.state.editMode} playerToEdit={this.state.playerToEdit} updatePlayer={this.updatePlayer} />
+        }
+        <div className="d-flex flex-wrap container">
+          <div className="row">
+            { players.map((player) => <Players key={player.id} player={player} deleteSinglePlayer={this.deleteSinglePlayer} setEditMode={this.setEditMode} setPlayerToEdit={this.setPlayerToEdit} />)}
+          </div>
+        </div>
       </div>
     );
   }
