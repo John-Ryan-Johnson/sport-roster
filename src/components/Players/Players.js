@@ -28,12 +28,12 @@ class Players extends React.Component {
     const { player } = this.props;
     return (
       <div className="Player col-md-3">
-        <div className="card">
+        <div className="card mb-2">
           <img src={player.imageUrl} className="card-img-top" alt="" />
           <div className="card-body">
             <h5 className="card-title">{player.name}</h5>
             <p className="card-text">{player.position}</p>
-            <button className="btn btn-danger" onClick={this.deleteSinglePlayerEvent}>X</button>
+            <button className="btn btn-danger mr-2" onClick={this.deleteSinglePlayerEvent}>Delete</button>
             <button className="btn btn-secondary" onClick={this.setEditMode}>Edit Player</button>
           </div>
         </div>
