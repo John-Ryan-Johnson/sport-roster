@@ -11,11 +11,15 @@ This application has full CRUD on a single collection of players. The user can v
 
 ## Screenshots
 
+![Main View](https://github.com/John-Ryan-Johnson/sport-roster/blob/master/Screenshots/Cleveland%20Indians.PNG)
+![Main View](https://github.com/John-Ryan-Johnson/sport-roster/blob/master/Screenshots/Add%20player.PNG)
+![Main View](https://github.com/John-Ryan-Johnson/sport-roster/blob/master/Screenshots/Edit%20player.PNG)
 
-
-
-
-
+## How to run
+* Clone down this project
+* Go to: https://www.npmjs.com/package/http-server and install "http-server"
+* Navigate to the project folder in command line interface and type: http-server -p 8080
+* This will show at: http://localhost:8888 in your internet browser
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
