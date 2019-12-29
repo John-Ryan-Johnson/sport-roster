@@ -1,3 +1,22 @@
+# Sport Roster
+
+## Description
+This application has full CRUD on a single collection of players. The user can view players on their team once they are logged in. They can add new players to their team, remove players, and update current players. The form to create and update players will show and hide as it is needed.
+
+## Technologies Used
+* React
+* Sass
+* Bootstrap
+* Firebase
+
+## Screenshots
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

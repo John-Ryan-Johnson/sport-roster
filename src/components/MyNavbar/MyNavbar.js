@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
   static propTypes = {
@@ -18,8 +19,8 @@ class MyNavbar extends React.Component {
     const { authed } = this.props;
     return (
       <div className="MyNavbar">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <span className="navbar-brand" href="#">Cleveland Indians Sports Roster</span>
+        <nav className="navbar navbar-expand-lg navbar-dark">
+          <span className="navbar-brand" href="#">Cleveland Indians Roster</span>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
