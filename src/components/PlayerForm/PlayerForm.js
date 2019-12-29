@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import authData from '../../helpers/data/authData';
 import playerShape from '../../helpers/propz/playerShape';
+import './PlayerForm.scss';
 
 class PlayerForm extends React.Component {
   static propTypes = {
@@ -110,8 +111,8 @@ class PlayerForm extends React.Component {
           </div>
           <div>
             {
-              (!editMode) ? (<button className="btn btn-primary" onClick={this.addPlayerEvent}>Add Player</button>)
-                : (<button className="btn btn-secondary" onClick={this.updatePlayerEvent}>Update Player</button>)
+              (!editMode) ? (<button className="btn btn-primary mb-3" onClick={this.addPlayerEvent}>Add Player</button>)
+                : (<button className="btn btn-secondary mb-3" onClick={this.updatePlayerEvent}>Update Player</button>)
             }
           </div>
         </form>
