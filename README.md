@@ -21,6 +21,8 @@ This application has full CRUD on a single collection of players. The user can v
 * Navigate to the project folder in command line interface and type: http-server -p 8080
 * This will show at: http://localhost:8888 in your internet browser
 
+* https://sport-roster.firebaseapp.com
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
